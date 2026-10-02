@@ -1,0 +1,2008 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cómo leer un informe de ergoespirometría</title>
+<meta name="description" content="Manual interactivo para médicos especialistas sobre la interpretación de la prueba de esfuerzo cardiopulmonar (CPET/ergoespirometría). Dr. Juan Fernando Carvajal Estupiñán y Dra. Diana Jimena Cano Rosales.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D2B45;
+    --navy-2: #163553;
+    --navy-3: #1e4266;
+    --amber: #C4923A;
+    --amber-2: #d9a94f;
+    --amber-3: #a17820;
+    --cream: #F5EFE1;
+    --paper: #FBF9F4;
+    --card-bg: #FFFFFF;
+    --text: #1A1A1A;
+    --text-2: #4A4A4A;
+    --text-3: #7A7A7A;
+    --border: #E5DFD1;
+    --success: #2E7D5E;
+    --warning: #C08327;
+    --danger: #A63A2E;
+    --code-bg: #F1EEE4;
+    --shadow: rgba(13, 43, 69, 0.08);
+    --shadow-strong: rgba(13, 43, 69, 0.15);
+  }
+  [data-theme="dark"] {
+    --navy: #E8DFC7;
+    --navy-2: #C4B693;
+    --navy-3: #F5EFE1;
+    --amber: #D9A94F;
+    --amber-2: #E6BC63;
+    --amber-3: #F0CE7E;
+    --cream: #0D1B2A;
+    --paper: #0D1B2A;
+    --card-bg: #162A3F;
+    --text: #F5EFE1;
+    --text-2: #C4B693;
+    --text-3: #8C9FB0;
+    --border: #2A4157;
+    --success: #6BC49E;
+    --warning: #E6BC63;
+    --danger: #E68A80;
+    --code-bg: #1B324A;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --shadow-strong: rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--text);
+    line-height: 1.65;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  /* THEME TOGGLE */
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    color: var(--text-2);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    box-shadow: 0 2px 8px var(--shadow);
+    transition: all 0.2s;
+  }
+  .theme-toggle:hover { border-color: var(--amber); color: var(--amber-3); }
+
+  /* HEADER */
+  .site-header {
+    background: linear-gradient(135deg, #0D2B45 0%, #1e4266 100%);
+    color: #F5EFE1;
+    padding: 3rem 2rem 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  [data-theme="dark"] .site-header { background: linear-gradient(135deg, #0A1520 0%, #1B324A 100%); }
+  .site-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(196, 146, 58, 0.08) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(196, 146, 58, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  .site-header .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: #d9a94f;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+    position: relative;
+  }
+  .site-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.25rem);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.02em;
+    position: relative;
+  }
+  .site-header .subtitle {
+    font-size: 1.1rem;
+    max-width: 720px;
+    margin: 0.75rem auto 0;
+    color: rgba(245, 239, 225, 0.85);
+    position: relative;
+  }
+  .site-header .authors {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(196, 146, 58, 0.3);
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+  }
+  .site-header .authors p {
+    margin: 0.2rem 0;
+    font-size: 0.95rem;
+    color: rgba(245, 239, 225, 0.9);
+  }
+  .site-header .authors .author-name {
+    font-weight: 600;
+    color: #d9a94f;
+  }
+  .site-header .authors .affil {
+    font-size: 0.82rem;
+    color: rgba(245, 239, 225, 0.65);
+    font-style: italic;
+    margin-top: 0.2rem;
+  }
+
+  /* CONTAINER */
+  .layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.5rem;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    position: sticky;
+    top: 1rem;
+    align-self: start;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding: 1.5rem 0;
+  }
+  .sidebar-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--text-3);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    padding-left: 0.75rem;
+  }
+  .toc {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .toc li a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-2);
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    font-size: 0.92rem;
+    transition: all 0.2s;
+    line-height: 1.4;
+  }
+  .toc li a:hover {
+    color: var(--navy);
+    background: rgba(196, 146, 58, 0.06);
+    border-left-color: var(--amber);
+  }
+  .toc li a.active {
+    color: var(--navy);
+    background: rgba(196, 146, 58, 0.1);
+    border-left-color: var(--amber);
+    font-weight: 600;
+  }
+  .toc-num {
+    display: inline-block;
+    width: 1.75rem;
+    color: var(--amber-3);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  /* MAIN */
+  main { padding: 3rem 0 5rem; min-width: 0; }
+  section { margin-bottom: 4rem; scroll-margin-top: 1rem; }
+  section h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+    border-bottom: 3px solid var(--amber);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+  }
+  section h2 .num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1.1rem;
+    color: var(--amber-3);
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 2rem 0 0.75rem;
+    letter-spacing: -0.005em;
+  }
+  section h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--navy-3);
+    margin: 1.5rem 0 0.5rem;
+  }
+  section p { margin: 0 0 1rem; }
+  section ul, section ol { margin: 0 0 1rem; padding-left: 1.5rem; }
+  section li { margin-bottom: 0.4rem; }
+
+  /* CALLOUTS */
+  .callout {
+    background: linear-gradient(to right, rgba(196, 146, 58, 0.08), rgba(196, 146, 58, 0.02));
+    border-left: 4px solid var(--amber);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber-3);
+    margin-bottom: 0.35rem;
+    font-weight: 600;
+  }
+  .callout.warning { border-left-color: var(--warning); background: linear-gradient(to right, rgba(192, 131, 39, 0.08), rgba(192, 131, 39, 0.02)); }
+  .callout.warning .label { color: var(--warning); }
+  .callout.danger { border-left-color: var(--danger); background: linear-gradient(to right, rgba(166, 58, 46, 0.08), rgba(166, 58, 46, 0.02)); }
+  .callout.danger .label { color: var(--danger); }
+  .callout.pearl { border-left-color: var(--navy); background: linear-gradient(to right, rgba(13, 43, 69, 0.06), rgba(13, 43, 69, 0.01)); }
+  [data-theme="dark"] .callout.pearl { background: linear-gradient(to right, rgba(232, 223, 199, 0.1), rgba(232, 223, 199, 0.02)); }
+  .callout.pearl .label { color: var(--navy); }
+
+  /* TABLES */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.25rem 0;
+    font-size: 0.92rem;
+    background: var(--card-bg);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px var(--shadow);
+  }
+  thead {
+    background: var(--navy);
+    color: var(--cream);
+  }
+  [data-theme="dark"] thead { color: var(--paper); }
+  th {
+    padding: 0.75rem 0.85rem;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.01em;
+  }
+  td {
+    padding: 0.6rem 0.85rem;
+    border-top: 1px solid var(--border);
+  }
+  tbody tr:nth-child(even) { background: var(--code-bg); }
+  tbody tr:hover { background: rgba(196, 146, 58, 0.08); }
+  td strong { color: var(--navy); }
+  .value-bold { color: var(--amber-3); font-weight: 600; }
+
+  /* FORMULA + CODE */
+  .formula {
+    background: var(--code-bg);
+    padding: 0.85rem 1rem;
+    border-radius: 4px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+    border-left: 3px solid var(--amber);
+    overflow-x: auto;
+    color: var(--text);
+  }
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--code-bg);
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-size: 0.9em;
+    color: var(--navy);
+  }
+
+  .chapter-intro {
+    color: var(--text-2);
+    font-size: 1.05rem;
+    padding: 0.5rem 0 1rem;
+    font-style: italic;
+    max-width: 720px;
+  }
+
+  /* ==================== INTERACTIVE WIDGETS ==================== */
+
+  /* Widget wrapper */
+  .widget {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    margin: 1.5rem 0;
+    box-shadow: 0 2px 8px var(--shadow);
+  }
+  .widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .widget-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    color: var(--navy);
+    font-size: 1.05rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .widget-title::before {
+    content: '⚡';
+    color: var(--amber);
+    font-size: 1rem;
+  }
+  .widget-hint {
+    font-size: 0.8rem;
+    color: var(--text-3);
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  /* ==================== RAMP CALCULATOR ==================== */
+  .ramp-calc {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .ramp-inputs { display: flex; flex-direction: column; gap: 0.75rem; }
+  .ramp-inputs label {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    font-weight: 500;
+  }
+  .ramp-inputs input, .ramp-inputs select {
+    width: 100%;
+    padding: 0.5rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    background: var(--paper);
+    color: var(--text);
+    margin-top: 0.25rem;
+  }
+  .ramp-inputs input:focus, .ramp-inputs select:focus {
+    outline: none;
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(196, 146, 58, 0.15);
+  }
+  .ramp-output {
+    background: linear-gradient(135deg, rgba(196, 146, 58, 0.1) 0%, rgba(196, 146, 58, 0.03) 100%);
+    border-left: 4px solid var(--amber);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .ramp-value {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+  .ramp-value .unit { font-size: 1rem; color: var(--amber-3); font-weight: 500; }
+  .ramp-desc {
+    font-size: 0.85rem;
+    color: var(--text-2);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  /* ==================== 9-PANEL WASSERMAN INTERACTIVE ==================== */
+  .wasserman-widget { padding: 1.25rem; }
+  .pattern-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .pattern-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--text-2);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'IBM Plex Mono', monospace;
+    transition: all 0.2s;
+  }
+  .pattern-btn:hover { border-color: var(--amber); }
+  .pattern-btn.active {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+  [data-theme="dark"] .pattern-btn.active { color: var(--paper); }
+  .panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    margin: 1rem 0;
+  }
+  .wasserman-panel {
+    background: var(--paper);
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .wasserman-panel:hover {
+    border-color: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow);
+  }
+  .wasserman-panel.selected {
+    border-color: var(--amber);
+    box-shadow: 0 0 0 3px rgba(196, 146, 58, 0.2);
+  }
+  .wasserman-panel .p-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--amber-3);
+    text-align: center;
+    margin-bottom: 0.15rem;
+  }
+  .wasserman-panel .p-title {
+    font-size: 0.68rem;
+    color: var(--navy);
+    text-align: center;
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 0.2rem;
+    min-height: 1.8em;
+  }
+  .wasserman-panel svg { width: 100%; height: 70px; display: block; }
+  .panel-detail {
+    background: var(--code-bg);
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-2);
+    min-height: 3rem;
+  }
+  .panel-detail-title {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  .panel-detail-body { line-height: 1.5; }
+
+  /* ==================== V-SLOPE SIMULATOR ==================== */
+  .vslope-sim { text-align: center; }
+  .vslope-sim svg { max-width: 100%; height: auto; cursor: crosshair; }
+  .vslope-feedback {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    background: var(--code-bg);
+    color: var(--text-2);
+  }
+  .vslope-feedback.success { background: rgba(46, 125, 94, 0.12); color: var(--success); }
+  .vslope-feedback.wrong { background: rgba(166, 58, 46, 0.1); color: var(--danger); }
+  .vslope-controls {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+  }
+  .vslope-btn {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--text-2);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'IBM Plex Mono', monospace;
+    transition: all 0.2s;
+  }
+  .vslope-btn:hover { border-color: var(--amber); color: var(--amber-3); }
+
+  /* ==================== PATTERN COMPARATOR ==================== */
+  .pattern-cmp-table td { transition: background 0.3s; }
+  .pattern-cmp-table td.highlight {
+    background: rgba(196, 146, 58, 0.25) !important;
+    font-weight: 600;
+  }
+  .pattern-cmp-legend {
+    font-size: 0.82rem;
+    color: var(--text-3);
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ==================== CASE SIMULATOR ==================== */
+  .case-sim { padding: 1.25rem; }
+  .case-step {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    transition: all 0.3s;
+  }
+  .case-step.revealed { border-left: 4px solid var(--amber); }
+  .case-step.locked { opacity: 0.35; pointer-events: none; }
+  .case-step-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--amber-3);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  .case-step-body { margin-bottom: 0.75rem; font-size: 0.92rem; }
+  .case-step-body ul { margin: 0.5rem 0 0.5rem 1.2rem; }
+  .case-choices {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .case-choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.9rem;
+    background: var(--card-bg);
+  }
+  .case-choice:hover:not(.locked) {
+    border-color: var(--amber);
+    background: rgba(196, 146, 58, 0.05);
+  }
+  .case-choice.selected-correct {
+    border-color: var(--success);
+    background: rgba(46, 125, 94, 0.1);
+  }
+  .case-choice.selected-wrong {
+    border-color: var(--danger);
+    background: rgba(166, 58, 46, 0.08);
+  }
+  .case-choice.locked { cursor: default; }
+  .case-feedback {
+    margin-top: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    background: var(--code-bg);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.88rem;
+    color: var(--text-2);
+    line-height: 1.5;
+  }
+  .case-feedback.hidden { display: none; }
+  .case-selector {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+  .case-selector button {
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--text-2);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  .case-selector button.active {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+  [data-theme="dark"] .case-selector button.active { color: var(--paper); }
+  .case-final {
+    background: linear-gradient(135deg, rgba(46, 125, 94, 0.1) 0%, rgba(46, 125, 94, 0.02) 100%);
+    border-left: 4px solid var(--success);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1rem;
+  }
+  .case-final.hidden { display: none; }
+  .case-final .lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--success);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .case-final .dx {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+
+  /* ==================== REPORT CHECKLIST ==================== */
+  .report-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .report-checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0.85rem;
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 0.4rem;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-size: 0.92rem;
+  }
+  .report-checklist li:hover { border-color: var(--amber); }
+  .report-checklist li.checked {
+    background: rgba(46, 125, 94, 0.08);
+    border-color: var(--success);
+    color: var(--text-2);
+  }
+  .checkbox-visual {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    font-size: 0.85rem;
+    color: transparent;
+    transition: all 0.2s;
+  }
+  .report-checklist li.checked .checkbox-visual {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+  }
+  .checklist-progress {
+    margin-top: 0.85rem;
+    padding: 0.75rem 1rem;
+    background: var(--code-bg);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .checklist-progress-bar {
+    flex-grow: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    max-width: 220px;
+  }
+  .checklist-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--amber), var(--success));
+    transition: width 0.3s;
+  }
+  .checklist-progress-txt {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--navy);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* ==================== ATLAS DE INFORMES MODELO ==================== */
+  .atlas-widget { padding: 0; }
+  .atlas-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+    border-radius: 10px 10px 0 0;
+  }
+  .atlas-btn {
+    padding: 0.5rem 0.95rem;
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    color: var(--text-2);
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .atlas-btn:hover { border-color: var(--amber); color: var(--amber-3); }
+  .atlas-btn.active {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+  [data-theme="dark"] .atlas-btn.active { color: var(--paper); }
+  .atlas-content { padding: 1.5rem 1.25rem; }
+  .atlas-report {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .atlas-section {
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 3px solid var(--amber);
+  }
+  .atlas-section h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-3);
+    margin: 0 0 0.6rem;
+    font-weight: 600;
+  }
+  .atlas-section p { margin: 0.3rem 0; font-size: 0.9rem; }
+  .atlas-section ul { margin: 0.3rem 0 0 1.2rem; padding: 0; font-size: 0.9rem; }
+  .atlas-section li { margin-bottom: 0.3rem; }
+  .atlas-table {
+    width: 100%;
+    font-size: 0.85rem;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+  }
+  .atlas-table th {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.78rem;
+  }
+  [data-theme="dark"] .atlas-table th { color: var(--paper); }
+  .atlas-table td {
+    padding: 0.35rem 0.6rem;
+    border-top: 1px solid var(--border);
+    background: var(--card-bg);
+  }
+  .atlas-table td.highlight {
+    color: var(--amber-3);
+    font-weight: 600;
+  }
+  .atlas-table td.danger {
+    color: var(--danger);
+    font-weight: 600;
+  }
+  .atlas-wasserman {
+    background: var(--paper);
+    border-radius: 8px;
+    padding: 1rem;
+    border-left: 3px solid var(--navy);
+  }
+  .atlas-wasserman h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+  }
+  .atlas-panel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+  }
+  .atlas-mini-panel {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.3rem;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+  .atlas-mini-panel .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--amber-3);
+    margin-bottom: 0.15rem;
+  }
+  .atlas-mini-panel .title {
+    font-size: 0.6rem;
+    color: var(--navy);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 0.15rem;
+    min-height: 2.1em;
+  }
+  .atlas-mini-panel svg { width: 100%; height: 42px; display: block; }
+  .atlas-interpretation {
+    background: linear-gradient(135deg, rgba(13, 43, 69, 0.05) 0%, rgba(13, 43, 69, 0.01) 100%);
+    border-left: 4px solid var(--navy);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1rem;
+  }
+  [data-theme="dark"] .atlas-interpretation { background: linear-gradient(135deg, rgba(232, 223, 199, 0.06) 0%, rgba(232, 223, 199, 0.01) 100%); }
+  .atlas-interpretation h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .atlas-interpretation p { margin: 0.4rem 0; font-size: 0.92rem; line-height: 1.55; }
+  .atlas-key-findings {
+    background: linear-gradient(135deg, rgba(196, 146, 58, 0.1) 0%, rgba(196, 146, 58, 0.02) 100%);
+    border-left: 4px solid var(--amber);
+    padding: 1rem 1.25rem;
+    border-radius: 0 8px 8px 0;
+  }
+  .atlas-key-findings h4 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-3);
+    margin: 0 0 0.5rem;
+    font-weight: 600;
+  }
+  .atlas-key-findings ul { margin: 0.4rem 0 0 1.2rem; padding: 0; }
+  .atlas-key-findings li { margin-bottom: 0.4rem; font-size: 0.9rem; line-height: 1.5; }
+  @media (max-width: 900px) {
+    .atlas-report { grid-template-columns: 1fr; }
+    .atlas-panel-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* ==================== GLOSARIO ==================== */
+  .glossary-section {
+    margin-bottom: 1.5rem;
+  }
+  .glossary-group {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-3);
+    font-weight: 600;
+    margin: 1.25rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .glossary-table {
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  .glossary-table td {
+    padding: 0.45rem 0.6rem;
+    border-top: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .glossary-table td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    color: var(--navy);
+    width: 11rem;
+    white-space: nowrap;
+  }
+
+  /* ==================== QUIZ ==================== */
+  .quiz-wrap { margin-top: 2rem; }
+  .quiz-controls {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .quiz-filter { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .filter-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--border);
+    background: var(--paper);
+    color: var(--text-2);
+    border-radius: 999px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--amber); color: var(--amber-3); }
+  .filter-btn.active {
+    background: var(--navy);
+    color: var(--cream);
+    border-color: var(--navy);
+  }
+  [data-theme="dark"] .filter-btn.active { color: var(--paper); }
+  .stats {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--text-2);
+  }
+  .stats strong { color: var(--navy); }
+  .quiz-reset {
+    font-size: 0.75rem;
+    color: var(--text-3);
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-family: inherit;
+  }
+  .quiz-reset:hover { color: var(--danger); }
+
+  .question {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s;
+  }
+  .question:hover { box-shadow: 0 2px 8px var(--shadow); }
+  .q-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .q-num {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--amber-3);
+    font-weight: 600;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    min-width: 3.5rem;
+  }
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    text-transform: uppercase;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .badge.basic { background: rgba(46, 125, 94, 0.12); color: var(--success); }
+  .badge.intermediate { background: rgba(192, 131, 39, 0.12); color: var(--warning); }
+  .badge.advanced { background: rgba(166, 58, 46, 0.12); color: var(--danger); }
+  .q-stem { font-weight: 500; color: var(--text); margin-bottom: 0.85rem; line-height: 1.55; }
+  .options { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 0.75rem; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--paper);
+  }
+  .option:hover:not(.locked) {
+    border-color: var(--amber);
+    background: rgba(196, 146, 58, 0.05);
+  }
+  .option.locked { cursor: default; }
+  .option .letter {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--amber-3);
+    font-weight: 600;
+    flex-shrink: 0;
+    min-width: 1.2rem;
+  }
+  .option.correct { background: rgba(46, 125, 94, 0.12); border-color: var(--success); }
+  .option.correct .letter { color: var(--success); }
+  .option.wrong { background: rgba(166, 58, 46, 0.08); border-color: var(--danger); }
+  .option.wrong .letter { color: var(--danger); }
+  .explanation {
+    background: rgba(13, 43, 69, 0.04);
+    border-left: 3px solid var(--navy);
+    padding: 0.75rem 1rem;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.92rem;
+    color: var(--text-2);
+    margin-top: 0.5rem;
+  }
+  [data-theme="dark"] .explanation { background: rgba(232, 223, 199, 0.06); }
+  .explanation .lbl {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    font-weight: 600;
+    margin-right: 0.4rem;
+  }
+  .explanation.hidden { display: none; }
+
+  /* AUTHORS FOOTER */
+  .authors-block {
+    background: var(--navy);
+    color: var(--cream);
+    padding: 2.5rem 2rem;
+    margin-top: 4rem;
+  }
+  [data-theme="dark"] .authors-block { background: #0A1520; color: var(--paper); }
+  .authors-block .inner { max-width: 900px; margin: 0 auto; }
+  .authors-block h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--amber-2);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0 0 1.5rem;
+    text-align: center;
+  }
+  [data-theme="dark"] .authors-block h3 { color: #D9A94F; }
+  .authors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .author-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--amber-2);
+    margin: 0 0 0.5rem;
+    font-size: 1.15rem;
+    font-weight: 600;
+  }
+  [data-theme="dark"] .author-card h4 { color: #D9A94F; }
+  .author-card p { margin: 0.25rem 0; font-size: 0.9rem; color: rgba(245, 239, 225, 0.85); }
+  [data-theme="dark"] .author-card p { color: rgba(232, 223, 199, 0.85); }
+  .author-card .role { color: var(--amber-2); font-weight: 500; font-size: 0.95rem; }
+  [data-theme="dark"] .author-card .role { color: #D9A94F; }
+  .colophon {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    background: var(--navy-2);
+    color: rgba(245, 239, 225, 0.65);
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+  }
+  [data-theme="dark"] .colophon { background: #06111C; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; gap: 1rem; padding: 0 1rem; }
+    .sidebar {
+      position: static; max-height: none; overflow: visible;
+      padding: 1rem 0; border-bottom: 1px solid var(--border); margin-bottom: 1rem;
+    }
+    main { padding: 1rem 0 3rem; }
+    .site-header { padding: 2rem 1rem 2.5rem; }
+    .ramp-calc { grid-template-columns: 1fr; }
+    .panel-grid { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+    .authors-grid { grid-template-columns: 1fr; }
+    table { font-size: 0.82rem; }
+    th, td { padding: 0.5rem 0.55rem; }
+  }
+  @media (max-width: 500px) {
+    section h2 { font-size: 1.5rem; }
+    .wasserman-panel .p-title { font-size: 0.6rem; }
+    .wasserman-panel svg { height: 45px; }
+  }
+</style>
+</head>
+<body>
+
+<button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+  <span id="themeIcon">🌙</span> <span id="themeLabel">OSCURO</span>
+</button>
+
+<header class="site-header">
+  <div class="tag">Manual interactivo · v2.0 · 2026</div>
+  <h1>Cómo leer un informe de ergoespirometría</h1>
+  <p class="subtitle">Guía práctica para médicos especialistas sobre la interpretación de la prueba de esfuerzo cardiopulmonar integrada (CPET).</p>
+  <div class="authors">
+    <p><span class="author-name">Dr. Juan Fernando Carvajal Estupiñán</span> — Cardiólogo internista</p>
+    <p class="affil">Instituto del Corazón de Bucaramanga · Programa de Hipertensión Pulmonar, Instituto Neumológico del Oriente</p>
+    <p style="margin-top: 0.75rem;"><span class="author-name">Dra. Diana Jimena Cano Rosales</span> — Neumóloga</p>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+    <div class="sidebar-title">Contenidos</div>
+    <ul class="toc">
+      <li><a href="#intro"><span class="toc-num">1</span>Introducción</a></li>
+      <li><a href="#fisiologia"><span class="toc-num">2</span>Fisiología integrada</a></li>
+      <li><a href="#tecnica"><span class="toc-num">3</span>La prueba: cómo se hace</a></li>
+      <li><a href="#variables"><span class="toc-num">4</span>Variables clave</a></li>
+      <li><a href="#panel9"><span class="toc-num">5</span>Panel de Wasserman</a></li>
+      <li><a href="#patrones"><span class="toc-num">6</span>Patrones de limitación</a></li>
+      <li><a href="#ph"><span class="toc-num">6b</span>CPET en hipertensión pulmonar</a></li>
+      <li><a href="#indicaciones"><span class="toc-num">7</span>Indicaciones clínicas</a></li>
+      <li><a href="#casos"><span class="toc-num">8</span>Casos interactivos</a></li>
+      <li><a href="#informe"><span class="toc-num">9</span>El informe estructurado</a></li>
+      <li><a href="#atlas"><span class="toc-num">10</span>Atlas de informes modelo</a></li>
+      <li><a href="#errores"><span class="toc-num">11</span>Errores frecuentes</a></li>
+      <li><a href="#glosario"><span class="toc-num">G</span>Glosario de siglas</a></li>
+      <li><a href="#quiz"><span class="toc-num">Q</span>Cuestionario final</a></li>
+      <li><a href="#biblio"><span class="toc-num">B</span>Bibliografía</a></li>
+    </ul>
+  </aside>
+
+  <main>
+
+    <!-- 1. INTRODUCCIÓN -->
+    <section id="intro">
+      <h2><span class="num">01</span>Introducción</h2>
+      <p class="chapter-intro">Por qué la ergoespirometría es la única prueba que integra corazón, pulmón y músculo en una sola respiración.</p>
+      <p>La <strong>ergoespirometría</strong> —también llamada prueba de esfuerzo cardiopulmonar, o por su acrónimo inglés <strong>CPET</strong> (<em>Cardiopulmonary Exercise Testing</em>)— combina el registro continuo del intercambio gaseoso con monitorización cardiovascular durante un ejercicio incremental hasta el esfuerzo máximo tolerado. Las tres variables primarias que se miden respiración a respiración son el <strong>consumo de oxígeno (V̇O₂)</strong>, la <strong>producción de dióxido de carbono (V̇CO₂)</strong> y la <strong>ventilación minuto (V̇E)</strong>. El punto sobre la letra (V̇) indica que son flujos por unidad de tiempo.</p>
+      <p>Su valor clínico deriva de una idea elegante: durante el ejercicio, los sistemas cardiovascular, ventilatorio y metabólico se acoplan y compiten. Cualquier limitación —cardíaca, pulmonar, vascular pulmonar, muscular o motivacional— deja una firma reconocible en las curvas. La CPET no diagnostica una enfermedad concreta; caracteriza <strong>qué sistema es el que limita al paciente</strong>.</p>
+      <div class="callout pearl">
+        <div class="label">Perla clínica</div>
+        <p style="margin:0;">Un ecocardiograma responde <em>cómo está el corazón en reposo</em>. Una espirometría responde <em>cómo están los pulmones en reposo</em>. La ergoespirometría responde algo que ninguna prueba en reposo puede: <strong>cuál de los sistemas se queda corto cuando el paciente los pone bajo demanda</strong>.</p>
+      </div>
+      <h3>Qué logra este manual</h3>
+      <ol>
+        <li>Reconocer las <strong>diez variables clave</strong> que soportan el 90% de las decisiones clínicas.</li>
+        <li>Aplicar el <strong>panel de nueve gráficas de Wasserman</strong> como método sistemático de lectura.</li>
+        <li>Diferenciar los <strong>cuatro patrones puros de limitación</strong>.</li>
+        <li>Reconocer las firmas de IC, EPOC, HP, EPID y disnea inexplicada.</li>
+        <li>Redactar y auditar un <strong>informe estructurado</strong> clínicamente accionable.</li>
+      </ol>
+    </section>
+
+    <!-- 2. FISIOLOGÍA -->
+    <section id="fisiologia">
+      <h2><span class="num">02</span>Fisiología integrada del ejercicio</h2>
+      <p class="chapter-intro">La cascada del oxígeno y la ecuación de Fick: dos ideas que hay que dominar antes de mirar el primer trazado.</p>
+      <h3>2.1 La cascada del oxígeno</h3>
+      <p>El oxígeno viaja desde el aire ambiental hasta la mitocondria del miocito por una cadena de gradientes de presión parcial. Cada eslabón puede ser el limitante: PO₂ inspirado → alveolar → arterial → tisular → mitocondrial.</p>
+      <h3>2.2 La ecuación de Fick</h3>
+      <p>Toda la ergoespirometría se sostiene sobre una única ecuación reordenada:</p>
+      <div class="formula">V̇O₂ = GC × C(a-v̄)O₂ = (FC × VS) × C(a-v̄)O₂</div>
+      <p>Donde <strong>GC</strong> es el gasto cardíaco, <strong>FC</strong> la frecuencia cardíaca, <strong>VS</strong> el volumen sistólico y <strong>C(a-v̄)O₂</strong> la diferencia arteriovenosa de oxígeno (concentración arterial menos concentración venosa mixta). Durante el ejercicio máximo, un sujeto sano multiplica por 20-25 su V̇O₂ basal, gracias a la <strong>multiplicación del GC × 4-6</strong> y la <strong>multiplicación de la extracción tisular × 3-4</strong>.</p>
+      <div class="callout">
+        <div class="label">Idea clave</div>
+        <p style="margin:0;">Si el V̇O₂max está bajo, o es un problema del <strong>numerador</strong> (transporte: corazón, pulmón, sangre) o del <strong>denominador</strong> (extracción: músculo, mitocondria). La CPET separa estas dos causas.</p>
+      </div>
+      <h3>2.3 Umbrales metabólicos</h3>
+      <ol>
+        <li><strong>Aeróbico puro</strong> (fase I): el <strong>cociente respiratorio (RER)</strong> = V̇CO₂/V̇O₂ se mantiene entre 0.7-0.85.</li>
+        <li><strong>Umbral anaeróbico (AT, de <em>Anaerobic Threshold</em>)</strong>, también llamado <strong>primer umbral ventilatorio (VT1)</strong>: comienza la producción sostenida de lactato. V̇CO₂ sube más rápido que V̇O₂.</li>
+        <li><strong>Punto de compensación respiratoria (RCP)</strong>, también <strong>segundo umbral ventilatorio (VT2)</strong>: la ventilación se dispara para compensar la acidosis metabólica. V̇E sube más rápido que V̇CO₂.</li>
+      </ol>
+    </section>
+
+    <!-- 3. LA PRUEBA -->
+    <section id="tecnica">
+      <h2><span class="num">03</span>La prueba: cómo se hace</h2>
+      <p class="chapter-intro">Ergómetro, protocolo, seguridad. Un informe solo vale lo que vale su prueba subyacente.</p>
+
+      <h3>3.1 Ergómetro: cicloergómetro vs. cinta</h3>
+      <table>
+        <thead><tr><th>Aspecto</th><th>Cicloergómetro</th><th>Cinta rodante</th></tr></thead>
+        <tbody>
+          <tr><td><strong>V̇O₂max relativo</strong></td><td>5-10% menor</td><td>Mayor (más masa muscular)</td></tr>
+          <tr><td><strong>Medida directa del trabajo</strong></td><td>Sí (vatios)</td><td>No (estimado)</td></tr>
+          <tr><td><strong>Calidad de ECG y TA</strong></td><td>Excelente</td><td>Ruido de movimiento</td></tr>
+          <tr><td><strong>Seguridad (frágiles, obesos)</strong></td><td>Preferible</td><td>Riesgo de caída</td></tr>
+          <tr><td><strong>Uso preferente</strong></td><td>Estándar clínico</td><td>Deportistas, ergometría clásica</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.2 Protocolo de rampa</h3>
+      <p>El protocolo estándar es una rampa continua precedida de reposo y calentamiento sin carga. Se individualiza para que el ejercicio incremental dure entre <strong>8 y 12 minutos</strong> (regla de Buchfuhrer).</p>
+      <div class="formula">Rampa (W/min) ≈ (V̇O₂max predicho − V̇O₂ reposo) / (100 × 10 min)</div>
+
+      <!-- WIDGET: Calculadora de rampa -->
+      <div class="widget">
+        <div class="widget-header">
+          <div class="widget-title">Calculadora de pendiente de rampa</div>
+          <div class="widget-hint">Cálculo en tiempo real</div>
+        </div>
+        <div class="ramp-calc">
+          <div class="ramp-inputs">
+            <label>Sexo
+              <select id="rampSex">
+                <option value="M">Varón</option>
+                <option value="F">Mujer</option>
+              </select>
+            </label>
+            <label>Edad (años)
+              <input type="number" id="rampAge" value="55" min="16" max="90">
+            </label>
+            <label>Talla (cm)
+              <input type="number" id="rampHeight" value="170" min="140" max="210">
+            </label>
+            <label>Peso (kg)
+              <input type="number" id="rampWeight" value="75" min="40" max="180">
+            </label>
+            <label>Estado funcional estimado
+              <select id="rampFitness">
+                <option value="sedentary">Sedentario / cardiópata leve</option>
+                <option value="moderate" selected>Moderado / EPOC leve-mod</option>
+                <option value="fit">Activo / sano</option>
+                <option value="limited">Muy limitado (IC-C/D, HAP-III)</option>
+              </select>
+            </label>
+          </div>
+          <div class="ramp-output">
+            <div style="font-size: 0.8rem; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; margin-bottom: 0.35rem;">RAMPA RECOMENDADA</div>
+            <div class="ramp-value"><span id="rampValue">15</span> <span class="unit">W/min</span></div>
+            <div class="ramp-desc" id="rampDesc">Para completar el ejercicio en ~10 min y facilitar la identificación del umbral anaeróbico.</div>
+            <div style="font-size: 0.78rem; color: var(--text-3); margin-top: 0.75rem; font-family: 'IBM Plex Mono', monospace;">V̇O₂max estimado: <span id="rampVO2">—</span> mL/min</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout warning">
+        <div class="label">Señal de alerta</div>
+        <p style="margin:0;">Ejercicio &lt;6 min: rampa demasiado rápida. Ejercicio &gt;14 min: rampa demasiado lenta. En ambos casos la comparación con valores de referencia queda invalidada.</p>
+      </div>
+
+      <h3>3.3 Contraindicaciones absolutas</h3>
+      <ul>
+        <li>IAM en los últimos 5 días</li>
+        <li>Angina inestable no controlada</li>
+        <li>Arritmias no controladas con compromiso hemodinámico</li>
+        <li>Endocarditis, miocarditis o pericarditis agudas</li>
+        <li>Estenosis aórtica severa sintomática</li>
+        <li>Insuficiencia cardíaca descompensada</li>
+        <li>Embolia pulmonar aguda</li>
+        <li>Disección aórtica</li>
+      </ul>
+
+      <h3>3.4 Criterios de detención (absolutos)</h3>
+      <ul>
+        <li>Caída de TAS &gt;10 mmHg respecto al basal con signos de hipoperfusión</li>
+        <li>Angina moderada-severa</li>
+        <li>Ataxia, mareo intenso, síncope inminente</li>
+        <li>Taquicardia ventricular sostenida</li>
+        <li>Elevación del ST &gt;1 mm en derivaciones sin onda Q previa</li>
+      </ul>
+
+      <h3>3.5 Criterios de esfuerzo máximo</h3>
+      <ul>
+        <li><strong>RER pico ≥1.10</strong> (el más usado)</li>
+        <li>FC pico ≥85% de la predicha por edad</li>
+        <li>Escala de Borg ≥18/20</li>
+        <li>Lactato ≥8 mmol/L si se mide</li>
+      </ul>
+    </section>
+
+    <!-- 4. VARIABLES -->
+    <section id="variables">
+      <h2><span class="num">04</span>Las diez variables clave</h2>
+      <p class="chapter-intro">Diez números que soportan el 90% de las decisiones.</p>
+
+      <h3>4.1 V̇O₂max / V̇O₂peak</h3>
+      <p>Consumo máximo de oxígeno. Indicador global de la capacidad aeróbica integrada. Se expresa en mL/kg/min y como % del predicho.</p>
+      <table>
+        <thead><tr><th>Clase (Weber)</th><th>V̇O₂max (mL/kg/min)</th><th>Interpretación</th></tr></thead>
+        <tbody>
+          <tr><td><strong>A</strong></td><td>&gt;20</td><td>Preservado</td></tr>
+          <tr><td><strong>B</strong></td><td>16-20</td><td>Limitación leve</td></tr>
+          <tr><td><strong>C</strong></td><td>10-15</td><td>Limitación moderada-severa</td></tr>
+          <tr><td><strong>D</strong></td><td>&lt;10</td><td>Limitación severa</td></tr>
+        </tbody>
+      </table>
+      <p>En <strong>insuficiencia cardíaca (IC)</strong>, un <strong>V̇O₂ pico &lt;14 mL/kg/min</strong> (o &lt;12 con β-bloqueo) es el umbral clásico para valorar trasplante cardíaco.</p>
+
+      <h3>4.2 Umbral anaeróbico (AT)</h3>
+      <p>Se identifica por el <strong>método V-slope</strong> (inflexión en V̇CO₂ vs. V̇O₂) confirmado con métodos ventilatorios. Se expresa como % del V̇O₂max predicho. Normal &gt;40%.</p>
+
+      <h3>4.3 Pulso de O₂ (V̇O₂/FC)</h3>
+      <p>Subrogado no invasivo del volumen sistólico. Dos dimensiones <strong>independientes</strong>:</p>
+      <ul>
+        <li><strong>Valor absoluto pico</strong>: refleja capacidad global (&gt;80% predicho normal).</li>
+        <li><strong>Morfología</strong>: ascenso normal · meseta precoz · caída.</li>
+      </ul>
+      <div class="callout pearl">
+        <div class="label">La perla más útil del manual</div>
+        <p style="margin:0;">Un pulso de O₂ con <strong>valor absoluto bajo pero morfología ascendente normal</strong> NO indica cardiopatía estructural. Suele reflejar desacondicionamiento, anemia o baja masa muscular.</p>
+      </div>
+
+      <h3>4.4 V̇E/V̇CO₂ slope</h3>
+      <p>Determinantes: PaCO₂ arterial y espacio muerto fisiológico (Vd/Vt).</p>
+      <table>
+        <thead><tr><th>V̇E/V̇CO₂ slope</th><th>Clase ventilatoria (Arena)</th><th>Interpretación</th></tr></thead>
+        <tbody>
+          <tr><td>&lt;30</td><td>—</td><td>Normal</td></tr>
+          <tr><td>30-35.9</td><td>VC I</td><td>Levemente elevado</td></tr>
+          <tr><td>36-44.9</td><td>VC II</td><td>Moderadamente elevado</td></tr>
+          <tr><td>45-54.9</td><td>VC III</td><td>Severamente elevado</td></tr>
+          <tr><td>≥55</td><td>VC IV</td><td>Extremadamente elevado</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.88rem; color: var(--text-2); margin-top: 0.35rem;"><em>Nota:</em> La <strong>clasificación ventilatoria de Arena</strong> (Ross Arena, 2007) estratifica el V̇E/V̇CO₂ slope en 4 clases (VC I-IV) por su valor pronóstico en insuficiencia cardíaca. Es a este slope lo que la <strong>clasificación de Weber (A-D)</strong> es al V̇O₂ pico. Cada clase se asocia con incrementos progresivos de mortalidad y eventos cardiovasculares, independientemente del V̇O₂ pico.</p>
+      <p>En IC: <strong>mejor predictor pronóstico que el V̇O₂max</strong>. En disnea inexplicada: mejor marcador no invasivo de <strong>hipertensión pulmonar (HP)</strong> oculta.</p>
+
+      <h3>4.5 Reserva ventilatoria</h3>
+      <div class="formula">RV (%) = (MVV − V̇E max) / MVV × 100 ; MVV ≈ FEV₁ × 35-40</div>
+      <p style="font-size: 0.9rem; color: var(--text-2); margin-top: -0.5rem;">Donde <strong>MVV</strong> = ventilación voluntaria máxima (<em>Maximal Voluntary Ventilation</em>) y <strong>FEV₁</strong> = volumen espiratorio forzado en el primer segundo.</p>
+      <ul>
+        <li><strong>&gt;30%</strong>: conservada.</li>
+        <li><strong>&lt;15%</strong> o negativa: limitación ventilatoria mecánica.</li>
+      </ul>
+
+      <h3>4.6 ΔV̇O₂/ΔWR</h3>
+      <p>Pendiente del V̇O₂ frente a la <strong>carga de trabajo (WR, <em>Work Rate</em>, en vatios)</strong>. Normal ≈ <strong>10 mL/min/W</strong>. Valores &lt;8 sugieren limitación cardiovascular (isquemia, IC avanzada, HP con fallo del <strong>ventrículo derecho (VD)</strong>).</p>
+
+      <h3>4.7 Reserva cronotrópica y HRR1</h3>
+      <ul>
+        <li>Reserva cronotrópica: (FC máx / FC máx predicha) × 100. Baja &lt;80% en β-bloqueo excesivo, disfunción del nodo sinusal o esfuerzo submáximo.</li>
+        <li><strong>HRR1</strong> (<em>Heart Rate Recovery</em> al primer minuto): descenso de la FC al minuto 1 de la recuperación. &gt;12 lpm con recuperación activa es normal. Baja = marcador independiente de mortalidad cardiovascular (Cole, NEJM 1999).</li>
+      </ul>
+
+      <h3>4.8 PETCO₂ y PETO₂</h3>
+      <p>Presiones parciales de CO₂ y de O₂ al final de la espiración (<em>end-tidal</em>). PETCO₂ sube desde ~36 hasta ~42-44 mmHg en el AT; estable hasta RCP; cae después. <strong>PETCO₂ basal &lt;33 mmHg</strong> que no sube: hiperventilación crónica, HP o <strong>tromboembolismo pulmonar (TEP)</strong> crónico.</p>
+
+      <h3>4.9 SpO₂</h3>
+      <p>Saturación periférica de oxígeno (medida por pulsioximetría). Desaturación significativa: caída ≥4% del basal o valor &lt;88%. Marcador de limitación del intercambio (<strong>enfermedad pulmonar intersticial difusa, EPID</strong>; <strong>enfermedad pulmonar obstructiva crónica, EPOC</strong>, avanzada; HP; <em>shunt</em>).</p>
+
+      <h3>4.10 Patrón ventilatorio (Vt / FR)</h3>
+      <ul>
+        <li><strong>Normal</strong>: Vt sube hasta 50-60% de la CV, luego FR sube.</li>
+        <li><strong>Rápido-superficial</strong>: FR alta desde el inicio, Vt limitado. EPID, enfermedad neuromuscular.</li>
+        <li><strong>Atrapamiento dinámico</strong>: caída de la capacidad inspiratoria. EPOC.</li>
+      </ul>
+    </section>
+
+    <!-- 5. PANEL 9 INTERACTIVO -->
+    <section id="panel9">
+      <h2><span class="num">05</span>El panel de nueve gráficas de Wasserman</h2>
+      <p class="chapter-intro">Matriz 3×3 interactiva. Cambia el patrón clínico y observa cómo se modifican las curvas prototípicas.</p>
+
+      <p>Karlman Wasserman propuso una disposición sistemática de 9 gráficas que hoy es el estándar visual de virtualmente todos los softwares comerciales. La lectura se hace <strong>por columnas</strong>: cada columna interroga un sistema (ventilación, cardiovascular, metabolismo).</p>
+
+      <!-- WIDGET: Panel 9 interactivo -->
+      <div class="widget wasserman-widget">
+        <div class="widget-header">
+          <div class="widget-title">Panel de 9 de Wasserman — interactivo</div>
+          <div class="widget-hint">Selecciona un patrón · toca cada panel</div>
+        </div>
+        <div class="pattern-selector" id="patternSelector">
+          <button class="pattern-btn active" data-pattern="normal">Normal</button>
+          <button class="pattern-btn" data-pattern="deconditioning">Desacondicionamiento</button>
+          <button class="pattern-btn" data-pattern="hf">IC con FEr</button>
+          <button class="pattern-btn" data-pattern="ph">HAP grupo 1</button>
+          <button class="pattern-btn" data-pattern="cteph">HP tromboembólica</button>
+          <button class="pattern-btn" data-pattern="exph">HP del ejercicio</button>
+          <button class="pattern-btn" data-pattern="copd">EPOC</button>
+          <button class="pattern-btn" data-pattern="ild">EPID</button>
+        </div>
+        <div class="panel-grid" id="panelGrid"></div>
+        <div class="panel-detail" id="panelDetail">
+          <div class="panel-detail-title">Método sistemático</div>
+          <div class="panel-detail-body">Empieza por P3 y P6 (metabolismo, esfuerzo). Luego P2 y P5 (cardiovascular). Después P4 y P8 (eficiencia ventilatoria). Cierra con P7 y P9 (patrón ventilatorio e intercambio). <strong>Selecciona un patrón arriba y toca cada panel para ver la firma característica.</strong></div>
+        </div>
+      </div>
+
+      <h3>Lectura por columnas</h3>
+      <ul>
+        <li><strong>Columna 1 (P1, P4, P7)</strong>: sistema <strong>ventilatorio</strong>.</li>
+        <li><strong>Columna 2 (P2, P5, P8)</strong>: sistema <strong>cardiovascular</strong>.</li>
+        <li><strong>Columna 3 (P3, P6, P9)</strong>: <strong>metabolismo e intercambio</strong>.</li>
+      </ul>
+
+      <!-- WIDGET: V-slope simulator -->
+      <div class="widget vslope-sim">
+        <div class="widget-header">
+          <div class="widget-title">Simulador del método V-slope</div>
+          <div class="widget-hint">Haz clic donde creas que está el AT</div>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-2); margin-bottom: 0.5rem;">Se representa V̇CO₂ (eje Y) frente a V̇O₂ (eje X) durante un ejercicio incremental de un varón sano de 55 años. Localiza el <strong>punto de inflexión</strong> donde la pendiente cambia de ≈1 a claramente &gt;1.</p>
+        <svg id="vslopeSvg" viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg" aria-label="Simulador V-slope">
+          <!-- Ejes y rejilla se generan en JS -->
+        </svg>
+        <div class="vslope-feedback" id="vslopeFeedback">Haz clic sobre la curva para señalar el punto de inflexión.</div>
+        <div class="vslope-controls">
+          <button class="vslope-btn" id="vslopeReset">Reiniciar</button>
+          <button class="vslope-btn" id="vslopeShow">Mostrar respuesta</button>
+          <button class="vslope-btn" id="vslopeNew">Nuevo trazado</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PATRONES -->
+    <section id="patrones">
+      <h2><span class="num">06</span>Los cuatro patrones puros de limitación</h2>
+      <p class="chapter-intro">No diagnostiques variables, diagnostica patrones. Usa el selector para resaltar las variables características de cada patrón.</p>
+
+      <!-- WIDGET: Pattern comparator -->
+      <div class="widget">
+        <div class="widget-header">
+          <div class="widget-title">Comparador dinámico de patrones puros</div>
+          <div class="widget-hint">Selecciona un patrón para resaltar</div>
+        </div>
+        <div class="pattern-selector" id="cmpSelector">
+          <button class="pattern-btn active" data-cmp="none">Ver todos</button>
+          <button class="pattern-btn" data-cmp="dc">Desacondicionamiento</button>
+          <button class="pattern-btn" data-cmp="cv">Limitación cardiovascular</button>
+          <button class="pattern-btn" data-cmp="v">Limitación ventilatoria</button>
+        </div>
+        <table class="pattern-cmp-table" id="cmpTable">
+          <thead>
+            <tr><th>Variable</th><th>Normal</th><th data-col="dc">Desacondicionamiento</th><th data-col="cv">Cardiovascular</th><th data-col="v">Ventilatoria</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>V̇O₂max</strong></td><td>&gt;85%</td><td data-c="dc">Bajo</td><td data-c="cv">Bajo</td><td data-c="v">Bajo</td></tr>
+            <tr><td><strong>AT (% predicho)</strong></td><td>&gt;40%</td><td data-c="dc">Bajo</td><td data-c="cv">Bajo</td><td data-c="v">Variable</td></tr>
+            <tr><td><strong>Pulso O₂ absoluto</strong></td><td>&gt;80%</td><td data-c="dc">Bajo</td><td data-c="cv">Bajo</td><td data-c="v">Variable</td></tr>
+            <tr><td><strong>Pulso O₂ morfología</strong></td><td>Ascenso</td><td data-c="dc"><strong>Ascenso normal</strong></td><td data-c="cv"><strong>Meseta / caída</strong></td><td data-c="v">Variable</td></tr>
+            <tr><td><strong>V̇E/V̇CO₂ slope</strong></td><td>&lt;30</td><td data-c="dc">&lt;30</td><td data-c="cv"><strong>≥30 elevado</strong></td><td data-c="v">Variable</td></tr>
+            <tr><td><strong>Reserva ventilatoria</strong></td><td>&gt;30%</td><td data-c="dc">Conservada</td><td data-c="cv">Conservada</td><td data-c="v"><strong>Reducida / nula</strong></td></tr>
+            <tr><td><strong>SpO₂ esfuerzo</strong></td><td>Estable</td><td data-c="dc">Estable</td><td data-c="cv">Estable</td><td data-c="v">Puede caer</td></tr>
+            <tr><td><strong>Motivo detención</strong></td><td>Máx voluntario</td><td data-c="dc">Fatiga muscular</td><td data-c="cv">Disnea + fatiga</td><td data-c="v">Disnea + broncoespasmo</td></tr>
+          </tbody>
+        </table>
+        <div class="pattern-cmp-legend">Selecciona un patrón para resaltar sus rasgos característicos.</div>
+      </div>
+
+      <h3>Firmas patológicas específicas</h3>
+      <h4>Insuficiencia cardíaca con fracción de eyección reducida (IC-FEr)</h4>
+      <ul>
+        <li>V̇O₂ pico bajo con reserva cronotrópica alterada.</li>
+        <li>Pulso O₂ con meseta precoz o caída.</li>
+        <li><strong>V̇E/V̇CO₂ slope alto (frecuentemente &gt;36)</strong> — mejor predictor pronóstico.</li>
+        <li>HRR1 bajo (disautonomía).</li>
+        <li>Oscilación ventilatoria periódica — pronóstico adverso adicional.</li>
+      </ul>
+      <h4>Hipertensión arterial pulmonar (HAP)</h4>
+      <ul>
+        <li>V̇E/V̇CO₂ slope muy alto (habitualmente &gt;40-50).</li>
+        <li><strong>PETCO₂ basal bajo</strong> que no asciende con el ejercicio.</li>
+        <li>ΔV̇O₂/ΔWR reducido por fallo del VD.</li>
+        <li>Puede aparecer desaturación (<em>shunt</em> derecha-izquierda por <strong>foramen oval permeable, FOP</strong>).</li>
+      </ul>
+      <h4>EPOC</h4>
+      <ul>
+        <li>Reserva ventilatoria reducida o nula.</li>
+        <li>Atrapamiento dinámico: caída de la capacidad inspiratoria.</li>
+        <li>Vt limitado; FR alta.</li>
+      </ul>
+      <h4>Enfermedad pulmonar intersticial difusa (EPID)</h4>
+      <ul>
+        <li>Patrón ventilatorio <strong>rápido y superficial</strong>.</li>
+        <li>V̇E/V̇CO₂ slope elevado (espacio muerto fisiológico, Vd/Vt, aumentado).</li>
+        <li><strong>Desaturación con esfuerzo</strong>.</li>
+      </ul>
+      <h4>Desacondicionamiento</h4>
+      <ul>
+        <li>V̇O₂ pico y AT bajos.</li>
+        <li>Pulso O₂ absoluto bajo pero <strong>morfología ascendente normal</strong>.</li>
+        <li>V̇E/V̇CO₂ slope normal, sin desaturación.</li>
+        <li>Detención por fatiga muscular. Diagnóstico por exclusión.</li>
+      </ul>
+    </section>
+
+    <!-- 6bis. CPET EN HIPERTENSIÓN PULMONAR -->
+    <section id="ph">
+      <h2><span class="num">6b</span>La CPET en la hipertensión pulmonar</h2>
+      <p class="chapter-intro">La CPET es probablemente la herramienta no invasiva más potente para el diagnóstico oculto, la estratificación pronóstica y el seguimiento de respuesta al tratamiento en HP.</p>
+
+      <p>La CPET juega en HP tres papeles clave que ninguna otra prueba cubre por sí sola:</p>
+      <ol>
+        <li><strong>Sospecha de HP oculta en disnea inexplicada con eco normal</strong>: la ecocardiografía tiene sensibilidad limitada para PSAP en pacientes con ventana difícil o HP incipiente. La CPET detecta la firma vascular pulmonar antes de que aparezca en el eco.</li>
+        <li><strong>Estratificación pronóstica</strong>: las guías ESC/ERS 2022 incluyen V̇O₂ pico y V̇E/V̇CO₂ slope entre las variables de riesgo, junto con NT-proBNP, clase funcional, PSAP y parámetros hemodinámicos.</li>
+        <li><strong>Seguimiento de respuesta al tratamiento</strong>: el V̇O₂ pico y el V̇E/V̇CO₂ slope mejoran con tratamientos vasodilatadores efectivos (macitentan, riociguat, prostanoides). La mejoría o el empeoramiento en CPETs seriadas informan sobre la trayectoria del paciente.</li>
+      </ol>
+
+      <h3>6b.1 Firma clásica de la HAP en la CPET</h3>
+      <p>Cinco hallazgos que juntos configuran la firma clásica de HAP grupo 1:</p>
+      <table>
+        <thead><tr><th>Variable</th><th>Hallazgo característico</th><th>Base fisiopatológica</th></tr></thead>
+        <tbody>
+          <tr><td><strong>V̇E/V̇CO₂ slope</strong></td><td>Muy elevado (&gt;40-50)</td><td>Aumento del espacio muerto por hipoperfusión de zonas ventiladas</td></tr>
+          <tr><td><strong>PETCO₂ basal</strong></td><td>&lt;33 mmHg, no asciende con ejercicio</td><td>Hiperventilación crónica compensatoria</td></tr>
+          <tr><td><strong>ΔV̇O₂/ΔWR</strong></td><td>Reducido (&lt;8 mL/min/W)</td><td>Fallo del VD para aumentar el gasto</td></tr>
+          <tr><td><strong>Pulso de O₂</strong></td><td>Meseta precoz</td><td>VS del VD limitado</td></tr>
+          <tr><td><strong>SpO₂</strong></td><td>Puede caer con esfuerzo</td><td>Shunt D-I por FOP + baja C(a-v)O₂</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout pearl">
+        <div class="label">Perla</div>
+        <p style="margin:0;">Un <strong>V̇E/V̇CO₂ slope &gt;45 con PETCO₂ basal &lt;30 mmHg</strong> en un paciente con disnea inexplicada y eco "normal" tiene un valor predictivo positivo altísimo para HP y justifica cateterismo derecho aunque el ecocardiograma no muestre datos sugestivos.</p>
+      </div>
+
+      <h3>6b.2 Diferenciar HP tipo 1 de HP tromboembólica crónica (CTEPH)</h3>
+      <p style="font-size: 0.9rem; color: var(--text-2); margin-top: -0.5rem;"><strong>CTEPH</strong> = <em>Chronic Thromboembolic Pulmonary Hypertension</em>, grupo 4 de la clasificación de la Organización Mundial de la Salud. Causada por organización fibrosa de émbolos pulmonares que no resuelven.</p>
+      <p>Ambas cursan con firma vascular en la CPET. Diferencias sutiles pero útiles:</p>
+      <table>
+        <thead><tr><th>Variable</th><th>HAP idiopática (grupo 1)</th><th>CTEPH (grupo 4)</th></tr></thead>
+        <tbody>
+          <tr><td>V̇E/V̇CO₂ slope</td><td>40-50 típicamente</td><td>Frecuentemente <strong>&gt;50</strong> (espacio muerto muy alto)</td></tr>
+          <tr><td>Ineficiencia ventilatoria basal</td><td>Presente</td><td><strong>Muy marcada</strong> desde el inicio</td></tr>
+          <tr><td>Desaturación con esfuerzo</td><td>Variable</td><td>Más frecuente e intensa</td></tr>
+          <tr><td>Cinética recuperación V̇O₂</td><td>Prolongada</td><td>Muy prolongada</td></tr>
+        </tbody>
+      </table>
+      <p>La imagen (angioTC, gammagrafía V/Q) sigue siendo obligatoria para el diagnóstico definitivo de CTEPH; la CPET solo sugiere.</p>
+
+      <h3>6b.3 HP del ejercicio (una entidad emergente)</h3>
+      <p>Concepto introducido en las <strong>guías ESC/ERS 2022</strong> (<em>European Society of Cardiology / European Respiratory Society</em>): paciente con <strong>presión arterial pulmonar media (PAPm)</strong> en reposo normal (&lt;20 mmHg) pero <strong>PAPm/GC durante el ejercicio &gt;3 mmHg/L/min</strong>. Es una entidad de transición hacia HP establecida.</p>
+      <p>En la CPET puede sospecharse por:</p>
+      <ul>
+        <li>V̇O₂ pico levemente reducido sin causa clara.</li>
+        <li>V̇E/V̇CO₂ slope <strong>en rango límite</strong> (30-38).</li>
+        <li>PETCO₂ que no asciende adecuadamente durante el ejercicio submáximo.</li>
+        <li>Reserva ventilatoria conservada, sin desaturación grave.</li>
+      </ul>
+      <p>El diagnóstico definitivo requiere <strong>cateterismo cardíaco derecho con ejercicio</strong>.</p>
+
+      <h3>6b.4 Estratificación de riesgo en HAP con CPET (ESC/ERS 2022)</h3>
+      <p>Las guías incluyen V̇O₂ pico y V̇E/V̇CO₂ slope entre los criterios de riesgo, junto con NYHA, 6MWD, BNP, hemodinamia. Estratificación en 3 estratos actualizada (bajo, intermedio, alto):</p>
+
+      <!-- WIDGET: Calculadora de riesgo HP -->
+      <div class="widget">
+        <div class="widget-header">
+          <div class="widget-title">Estratificación CPET del riesgo en HAP (ESC/ERS 2022)</div>
+          <div class="widget-hint">Introduce V̇O₂ pico y V̇E/V̇CO₂ slope</div>
+        </div>
+        <div class="ramp-calc">
+          <div class="ramp-inputs">
+            <label>V̇O₂ pico (mL/kg/min)
+              <input type="number" id="phVO2" value="14" min="4" max="35" step="0.5">
+            </label>
+            <label>V̇O₂ pico (% del predicho)
+              <input type="number" id="phVO2pct" value="55" min="20" max="100" step="1">
+            </label>
+            <label>V̇E/V̇CO₂ slope
+              <input type="number" id="phSlope" value="38" min="20" max="80" step="1">
+            </label>
+          </div>
+          <div class="ramp-output" id="phRiskOutput">
+            <div style="font-size: 0.8rem; color: var(--text-3); font-family: 'IBM Plex Mono', monospace; margin-bottom: 0.35rem;">ESTRATO DE RIESGO CPET</div>
+            <div class="ramp-value" id="phRiskLevel">—</div>
+            <div class="ramp-desc" id="phRiskDesc">Introduce las variables para estratificar el riesgo funcional del paciente con HAP.</div>
+          </div>
+        </div>
+        <div style="font-size: 0.78rem; color: var(--text-3); margin-top: 0.75rem; font-style: italic;">La estratificación completa integra además NYHA, síncope, 6MWD, BNP/NT-proBNP, PAD, IC y SvO₂ hemodinámica. Este widget aísla los dos parámetros de CPET.</div>
+      </div>
+
+      <h3>6b.5 Seguimiento con CPET en el programa de HP</h3>
+      <p>Recomendaciones prácticas para uso longitudinal:</p>
+      <ul>
+        <li><strong>Basal</strong>: CPET en todos los pacientes al diagnóstico, para caracterizar la limitación y establecer punto de partida funcional.</li>
+        <li><strong>3-6 meses tras inicio o cambio de tratamiento</strong>: para evaluar respuesta funcional.</li>
+        <li><strong>Anual</strong> en pacientes estables como parte del panel de riesgo integrado.</li>
+        <li><strong>Ante deterioro clínico</strong>: para objetivar si la caída de la clase funcional se acompaña de caída del V̇O₂ pico o elevación del V̇E/V̇CO₂ slope.</li>
+      </ul>
+
+      <div class="callout warning">
+        <div class="label">Umbrales prácticos de mejoría/empeoramiento</div>
+        <p style="margin:0;">Una variación clínicamente significativa entre dos CPETs del mismo paciente: cambio &gt;10% en V̇O₂ pico o cambio &gt;3-5 puntos en V̇E/V̇CO₂ slope. Cambios menores pueden reflejar variabilidad técnica.</p>
+      </div>
+
+      <h3>6b.6 Pitfalls específicos en HP</h3>
+      <ul>
+        <li><strong>Suspender vasodilatadores antes de la prueba puede ser inseguro</strong>: mantener la medicación habitual. La CPET refleja el estado funcional real del paciente.</li>
+        <li><strong>Rampa muy corta puede subestimar el V̇O₂ pico</strong>: usar 5-10 W/min en pacientes NYHA III-IV.</li>
+        <li><strong>Cuidado con protocolos escalonados largos</strong>: el paciente puede claudicar por fatiga muscular periférica antes de agotar su reserva cardiovascular.</li>
+        <li><strong>Vigilar SpO₂</strong>: caída &gt;10% obliga a considerar oxígeno suplementario durante la prueba si se repite.</li>
+        <li><strong>Detención más precoz</strong>: bajar el umbral de detención por criterio hemodinámico en pacientes NYHA III-IV.</li>
+      </ul>
+    </section>
+
+    <!-- 7. INDICACIONES -->
+    <section id="indicaciones">
+      <h2><span class="num">07</span>Indicaciones clínicas</h2>
+      <p class="chapter-intro">Cuándo pedir una CPET y qué pregunta formular al laboratorio.</p>
+      <table>
+        <thead><tr><th>Escenario</th><th>Pregunta clínica</th><th>Variables clave</th></tr></thead>
+        <tbody>
+          <tr><td>Disnea inexplicada</td><td>¿Cuál es el sistema limitante?</td><td>V̇E/V̇CO₂ slope, pulso O₂ morfología, PETCO₂</td></tr>
+          <tr><td>Insuficiencia cardíaca crónica</td><td>Estratificación pronóstica; ¿trasplante?</td><td>V̇O₂ pico, V̇E/V̇CO₂ slope, HRR1</td></tr>
+          <tr><td>Hipertensión pulmonar</td><td>Seguimiento; respuesta al tratamiento</td><td>V̇O₂ pico, V̇E/V̇CO₂ slope, PETCO₂</td></tr>
+          <tr><td>EPOC</td><td>Cuantificar limitación; prescribir rehabilitación</td><td>Reserva ventilatoria, IC seriada, SpO₂</td></tr>
+          <tr><td>Evaluación prequirúrgica mayor</td><td>Riesgo de morbimortalidad</td><td>V̇O₂ pico, AT, V̇E/V̇CO₂ slope</td></tr>
+          <tr><td>Medicina deportiva</td><td>Optimización del entrenamiento</td><td>V̇O₂max, AT, RCP, cinética recuperación</td></tr>
+          <tr><td>Enfermedad valvular</td><td>Sintomatología encubierta</td><td>V̇O₂ pico, respuesta hemodinámica</td></tr>
+          <tr><td>Cardiopatías congénitas del adulto</td><td>Capacidad funcional y limitación</td><td>Todas</td></tr>
+        </tbody>
+      </table>
+      <div class="callout warning">
+        <div class="label">Regla práctica</div>
+        <p style="margin:0;">La CPET debe pedirse con una <strong>pregunta clínica concreta</strong>, no como cribado general. Sin pregunta, el informe será una lista de números; con pregunta, será un consejo clínico.</p>
+      </div>
+    </section>
+
+    <!-- 8. CASOS INTERACTIVOS -->
+    <section id="casos">
+      <h2><span class="num">08</span>Casos clínicos interactivos</h2>
+      <p class="chapter-intro">Cuatro casos con datos revelados progresivamente. En cada paso, elige la hipótesis más probable y recibe feedback razonado.</p>
+
+      <div class="widget case-sim">
+        <div class="widget-header">
+          <div class="widget-title">Simulador de decisión clínica</div>
+          <div class="widget-hint">Selecciona un caso · avanza por pasos</div>
+        </div>
+        <div class="case-selector" id="caseSelector">
+          <button class="active" data-case="0">Caso 1 · Disnea post-COVID</button>
+          <button data-case="1">Caso 2 · IC-FEr avanzada</button>
+          <button data-case="2">Caso 3 · Disnea inexplicada → HP oculta</button>
+          <button data-case="3">Caso 4 · EPOC vs. EPID</button>
+          <button data-case="4">Caso 5 · HAP en seguimiento</button>
+          <button data-case="5">Caso 6 · CTEPH vs HAP idiopática</button>
+        </div>
+        <div id="caseContainer"></div>
+      </div>
+    </section>
+
+    <!-- 9. INFORME -->
+    <section id="informe">
+      <h2><span class="num">09</span>El informe estructurado</h2>
+      <p class="chapter-intro">Un informe de CPET vale por su capacidad de traducir números en decisión clínica.</p>
+
+      <h3>Estructura mínima recomendada</h3>
+      <ol>
+        <li><strong>Datos técnicos</strong>: ergómetro, protocolo, duración, motivo de detención, RER pico, criterio de esfuerzo máximo.</li>
+        <li><strong>Resultados principales</strong>: V̇O₂ pico, AT, pulso O₂, V̇E/V̇CO₂ slope, reserva ventilatoria, SpO₂, respuesta hemodinámica.</li>
+        <li><strong>Interpretación integrada</strong>: patrón identificado + razonamiento breve.</li>
+        <li><strong>Conclusión</strong>: diagnóstico funcional (una frase).</li>
+        <li><strong>Recomendaciones</strong>: acción clínica específica.</li>
+      </ol>
+
+      <!-- WIDGET: Checklist interactivo -->
+      <div class="widget">
+        <div class="widget-header">
+          <div class="widget-title">Checklist de auditoría del informe</div>
+          <div class="widget-hint">Marca cada punto verificado</div>
+        </div>
+        <p style="font-size: 0.9rem; color: var(--text-2); margin-bottom: 0.75rem;">Antes de firmar o interpretar un informe recibido, verifica que cumple estos ocho puntos:</p>
+        <ul class="report-checklist" id="reportChecklist">
+          <li data-idx="0"><span class="checkbox-visual">✓</span><span>¿El informe identifica ergómetro y protocolo utilizados?</span></li>
+          <li data-idx="1"><span class="checkbox-visual">✓</span><span>¿La duración del ejercicio está entre 6 y 14 minutos?</span></li>
+          <li data-idx="2"><span class="checkbox-visual">✓</span><span>¿Se alcanzó esfuerzo máximo (RER pico ≥1.10 o Borg ≥18)?</span></li>
+          <li data-idx="3"><span class="checkbox-visual">✓</span><span>¿Las curvas del panel de 9 son coherentes entre sí?</span></li>
+          <li data-idx="4"><span class="checkbox-visual">✓</span><span>¿Se informa V̇E/V̇CO₂ slope y no solo el cociente puntual?</span></li>
+          <li data-idx="5"><span class="checkbox-visual">✓</span><span>¿Se describe la morfología del pulso de O₂ (no solo el valor)?</span></li>
+          <li data-idx="6"><span class="checkbox-visual">✓</span><span>¿Se informa PETCO₂ basal y su comportamiento (clave en HP)?</span></li>
+          <li data-idx="7"><span class="checkbox-visual">✓</span><span>¿Se cuantifica la desaturación con esfuerzo (ΔSpO₂ y nadir)?</span></li>
+          <li data-idx="8"><span class="checkbox-visual">✓</span><span>¿La interpretación identifica un patrón, no solo lista variables?</span></li>
+          <li data-idx="9"><span class="checkbox-visual">✓</span><span>¿La conclusión responde la pregunta clínica formulada al pedir la prueba?</span></li>
+        </ul>
+        <div class="checklist-progress">
+          <span>Informe auditado:</span>
+          <div class="checklist-progress-bar"><div class="checklist-progress-fill" id="checklistFill" style="width: 0%;"></div></div>
+          <span class="checklist-progress-txt"><span id="checklistCount">0</span>/10</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. ATLAS DE INFORMES MODELO -->
+    <section id="atlas">
+      <h2><span class="num">10</span>Atlas de informes modelo por patología</h2>
+      <p class="chapter-intro">Selecciona una patología para ver el informe estándar completo con datos típicos, el panel de 9 de Wasserman correspondiente, la interpretación narrativa y los hallazgos clave que la identifican.</p>
+
+      <p>Este atlas te permite ver, en formato de informe real redactado, cómo se traduce cada patrón puro de limitación en un documento clínico. Puedes compararlo con cualquier informe que recibas y usarlo como plantilla de interpretación. Los valores son los <strong>típicos de cada entidad</strong> en un paciente representativo; en la práctica real cada paciente tiene matices.</p>
+
+      <div class="widget atlas-widget">
+        <div class="atlas-selector" id="atlasSelector">
+          <button class="atlas-btn active" data-atlas="normal">Normal</button>
+          <button class="atlas-btn" data-atlas="deconditioning">Desacondicionamiento</button>
+          <button class="atlas-btn" data-atlas="hf">IC con FEr</button>
+          <button class="atlas-btn" data-atlas="hfpef">IC con FEp</button>
+          <button class="atlas-btn" data-atlas="ph">HAP grupo 1</button>
+          <button class="atlas-btn" data-atlas="cteph">CTEPH</button>
+          <button class="atlas-btn" data-atlas="exph">HP del ejercicio</button>
+          <button class="atlas-btn" data-atlas="copd">EPOC</button>
+          <button class="atlas-btn" data-atlas="ild">EPID</button>
+          <button class="atlas-btn" data-atlas="cpfe">CPFE</button>
+          <button class="atlas-btn" data-atlas="obesity">Obesidad</button>
+        </div>
+        <div class="atlas-content" id="atlasContent">
+          <!-- Se renderiza por JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. ERRORES -->
+    <section id="errores">
+      <h2><span class="num">11</span>Diez errores frecuentes que hay que desarmar</h2>
+      <p class="chapter-intro">Los malentendidos que arruinan interpretaciones.</p>
+      <ol>
+        <li><strong>"V̇O₂ bajo + pulso O₂ bajo = enfermedad cardíaca"</strong>: FALSO si la morfología del pulso O₂ es ascendente normal.</li>
+        <li><strong>"AT bajo es siempre patológico"</strong>: sensible pero inespecífico.</li>
+        <li><strong>"Reserva ventilatoria conservada descarta enfermedad pulmonar"</strong>: descarta solo limitación mecánica.</li>
+        <li><strong>"V̇E/V̇CO₂ slope alto = IC"</strong>: es el mejor marcador en IC pero también se eleva en HP, EPID, TEP crónica.</li>
+        <li><strong>"Si no hay desaturación no hay enfermedad pulmonar"</strong>: falso. EPOC moderada e HP no siempre desaturan.</li>
+        <li><strong>"El paciente refirió disnea, hay que parar"</strong>: la disnea es lo que la CPET pretende caracterizar. Solo se detiene por disnea incapacitante.</li>
+        <li><strong>"El V̇O₂max es el mejor pronóstico en IC"</strong>: el V̇E/V̇CO₂ slope es superior en múltiples cohortes.</li>
+        <li><strong>"Cualquier protocolo sirve"</strong>: un protocolo mal ajustado invalida comparaciones.</li>
+        <li><strong>"La cinta es siempre mejor"</strong>: en clínica el cicloergómetro es preferible por medida directa del trabajo.</li>
+        <li><strong>"CPET solo sirve en cardiología del deporte"</strong>: sus indicaciones más potentes son clínicas.</li>
+      </ol>
+    </section>
+
+    <!-- GLOSARIO -->
+    <section id="glosario">
+      <h2><span class="num">G</span>Glosario de siglas y términos</h2>
+      <p class="chapter-intro">Todas las siglas y términos técnicos que aparecen en el manual, organizados por bloque temático.</p>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Variables de intercambio gaseoso y ejercicio</div>
+        <table class="glossary-table">
+          <tr><td>V̇O₂</td><td>Consumo de oxígeno (volumen por minuto). El punto sobre la V indica flujo. Se expresa en mL/min, mL/kg/min o % del predicho.</td></tr>
+          <tr><td>V̇O₂max</td><td>Consumo máximo de oxígeno con demostración de meseta a pesar del aumento de carga (criterio de Hill).</td></tr>
+          <tr><td>V̇O₂peak</td><td>Consumo pico de oxígeno sin demostración de meseta. Lo que la mayoría de informes reporta.</td></tr>
+          <tr><td>V̇CO₂</td><td>Producción de dióxido de carbono.</td></tr>
+          <tr><td>V̇E</td><td>Ventilación minuto (volumen de aire espirado por minuto, en L/min).</td></tr>
+          <tr><td>Vt</td><td>Volumen corriente (volumen por respiración).</td></tr>
+          <tr><td>FR</td><td>Frecuencia respiratoria (respiraciones por minuto).</td></tr>
+          <tr><td>RER</td><td><em>Respiratory Exchange Ratio</em>, cociente respiratorio = V̇CO₂/V̇O₂ medido en el aire espirado. Normal en reposo 0.8-0.85; RER ≥1.10 pico sugiere esfuerzo máximo.</td></tr>
+          <tr><td>AT</td><td>Umbral anaeróbico (<em>Anaerobic Threshold</em>). Inicio del tamponamiento sostenido del lactato.</td></tr>
+          <tr><td>VT1</td><td>Primer umbral ventilatorio. Equivalente al AT.</td></tr>
+          <tr><td>RCP</td><td>Punto de compensación respiratoria. Inicio de hiperventilación compensatoria por acidosis metabólica.</td></tr>
+          <tr><td>VT2</td><td>Segundo umbral ventilatorio. Equivalente al RCP.</td></tr>
+          <tr><td>WR</td><td><em>Work Rate</em>. Carga de trabajo en vatios (cicloergómetro) o MET equivalente (cinta).</td></tr>
+          <tr><td>ΔV̇O₂/ΔWR</td><td>Pendiente del incremento de V̇O₂ frente al incremento de carga. Normal ≈10 mL/min/W.</td></tr>
+          <tr><td>OUES</td><td><em>Oxygen Uptake Efficiency Slope</em>. Pendiente de la relación V̇O₂ vs. log(V̇E). Pronóstico en IC, independiente del esfuerzo máximo.</td></tr>
+          <tr><td>MET</td><td>Equivalente metabólico. 1 MET ≈ 3.5 mL/kg/min de V̇O₂ (consumo basal).</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Variables ventilatorias y de intercambio</div>
+        <table class="glossary-table">
+          <tr><td>MVV</td><td><em>Maximal Voluntary Ventilation</em>. Ventilación voluntaria máxima. Se estima como FEV₁ × 35-40.</td></tr>
+          <tr><td>FEV₁</td><td>Volumen espiratorio forzado en el primer segundo.</td></tr>
+          <tr><td>FVC</td><td>Capacidad vital forzada.</td></tr>
+          <tr><td>CV</td><td>Capacidad vital (lenta).</td></tr>
+          <tr><td>IC</td><td>Capacidad inspiratoria (en el contexto de patrón ventilatorio). ⚠️ No confundir con Insuficiencia Cardíaca.</td></tr>
+          <tr><td>EELV</td><td><em>End-Expiratory Lung Volume</em>. Volumen pulmonar al final de la espiración; aumenta en atrapamiento dinámico.</td></tr>
+          <tr><td>DLCO</td><td>Capacidad de difusión del monóxido de carbono. Marcador del intercambio alvéolo-capilar.</td></tr>
+          <tr><td>Vd/Vt</td><td>Relación espacio muerto/volumen corriente. Aumentado en HP, EPID, TEP crónica.</td></tr>
+          <tr><td>PETCO₂</td><td>Presión parcial de CO₂ al final de la espiración (<em>end-tidal</em>). Aproxima PaCO₂ en pulmón sano.</td></tr>
+          <tr><td>PETO₂</td><td>Presión parcial de O₂ al final de la espiración.</td></tr>
+          <tr><td>PaCO₂</td><td>Presión arterial de CO₂.</td></tr>
+          <tr><td>SpO₂</td><td>Saturación periférica de oxígeno medida por pulsioximetría.</td></tr>
+          <tr><td>V̇E/V̇CO₂ slope</td><td>Pendiente de la ventilación frente a la producción de CO₂. Normal &lt;30. Marcador pronóstico clave en IC y HP.</td></tr>
+          <tr><td>V/Q</td><td>Relación ventilación/perfusión. Alterada en EPID, EPOC, HP.</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Variables cardiovasculares y hemodinámicas</div>
+        <table class="glossary-table">
+          <tr><td>FC</td><td>Frecuencia cardíaca (latidos por minuto).</td></tr>
+          <tr><td>GC</td><td>Gasto cardíaco (L/min).</td></tr>
+          <tr><td>VS</td><td>Volumen sistólico (mL/latido).</td></tr>
+          <tr><td>V̇O₂/FC</td><td>Pulso de oxígeno. Subrogado no invasivo del volumen sistólico.</td></tr>
+          <tr><td>C(a-v̄)O₂</td><td>Diferencia arteriovenosa de oxígeno. Arterial menos venoso mixto.</td></tr>
+          <tr><td>HRR1</td><td><em>Heart Rate Recovery</em> al primer minuto de la recuperación. &gt;12 lpm normal (recuperación activa).</td></tr>
+          <tr><td>TAS / TAD</td><td>Tensión arterial sistólica / diastólica.</td></tr>
+          <tr><td>ECG</td><td>Electrocardiograma.</td></tr>
+          <tr><td>FEVI</td><td>Fracción de eyección del ventrículo izquierdo.</td></tr>
+          <tr><td>VD / VI</td><td>Ventrículo derecho / izquierdo.</td></tr>
+          <tr><td>PAPm</td><td>Presión arterial pulmonar media (mmHg).</td></tr>
+          <tr><td>PAWP</td><td>Presión capilar pulmonar enclavada (<em>Wedge pressure</em>).</td></tr>
+          <tr><td>PAD</td><td>Presión en aurícula derecha.</td></tr>
+          <tr><td>RVP</td><td>Resistencia vascular pulmonar (en unidades Wood, UW).</td></tr>
+          <tr><td>SvO₂</td><td>Saturación venosa mixta (muestra de arteria pulmonar).</td></tr>
+          <tr><td>UW</td><td>Unidades Wood (mmHg/L/min). Unidad de resistencia vascular pulmonar.</td></tr>
+          <tr><td>PSAP</td><td>Presión sistólica pulmonar estimada por ecocardiograma.</td></tr>
+          <tr><td>FOP</td><td>Foramen oval permeable.</td></tr>
+          <tr><td>CGC/CDI</td><td>Cardiodesfibrilador implantable.</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Entidades clínicas</div>
+        <table class="glossary-table">
+          <tr><td>IC</td><td>Insuficiencia cardíaca. ⚠️ Como sigla también significa "capacidad inspiratoria" en contexto ventilatorio.</td></tr>
+          <tr><td>IC-FEr</td><td>IC con fracción de eyección reducida (FEVI ≤40%).</td></tr>
+          <tr><td>IC-FEp</td><td>IC con fracción de eyección preservada (FEVI ≥50%).</td></tr>
+          <tr><td>IC-FElr</td><td>IC con fracción de eyección ligeramente reducida (FEVI 41-49%).</td></tr>
+          <tr><td>HP</td><td>Hipertensión pulmonar (término genérico; cualquier grupo).</td></tr>
+          <tr><td>HAP</td><td>Hipertensión arterial pulmonar (HP del grupo 1 OMS: precapilar sin causa de izquierda, pulmonar o tromboembólica).</td></tr>
+          <tr><td>CTEPH</td><td><em>Chronic Thromboembolic Pulmonary Hypertension</em>. HP tromboembólica crónica, grupo 4 OMS.</td></tr>
+          <tr><td>EPOC</td><td>Enfermedad pulmonar obstructiva crónica.</td></tr>
+          <tr><td>EPID</td><td>Enfermedad pulmonar intersticial difusa.</td></tr>
+          <tr><td>CPFE</td><td><em>Combined Pulmonary Fibrosis and Emphysema</em>. Fibrosis pulmonar + enfisema coexistentes.</td></tr>
+          <tr><td>TEP</td><td>Tromboembolismo pulmonar (agudo).</td></tr>
+          <tr><td>IAM</td><td>Infarto agudo de miocardio.</td></tr>
+          <tr><td>SCA</td><td>Síndrome coronario agudo.</td></tr>
+          <tr><td>MCP</td><td>Miocardiopatía.</td></tr>
+          <tr><td>FA</td><td>Fibrilación auricular.</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Escalas y clasificaciones</div>
+        <table class="glossary-table">
+          <tr><td>Clase Weber (A-D)</td><td>Clasificación del V̇O₂ pico (Weber 1982). A &gt;20, B 16-20, C 10-15, D &lt;10 mL/kg/min.</td></tr>
+          <tr><td>Clase VC (I-IV) de Arena</td><td>Clasificación ventilatoria del V̇E/V̇CO₂ slope (Arena 2007). I 30-35.9, II 36-44.9, III 45-54.9, IV ≥55.</td></tr>
+          <tr><td>NYHA</td><td><em>New York Heart Association</em>. Clase funcional en IC (I-IV).</td></tr>
+          <tr><td>Borg</td><td>Escala de percepción del esfuerzo (6-20) o del síntoma disnea (0-10).</td></tr>
+          <tr><td>6MWD</td><td><em>6-Minute Walk Distance</em>. Distancia recorrida en el test de marcha de 6 minutos.</td></tr>
+          <tr><td>BNP / NT-proBNP</td><td>Péptido natriurético cerebral y su fragmento N-terminal. Biomarcador de sobrecarga/disfunción cardíaca.</td></tr>
+          <tr><td>GOLD</td><td>Clasificación de severidad del EPOC (<em>Global Initiative for Chronic Obstructive Lung Disease</em>).</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Técnica y conversiones de gases</div>
+        <table class="glossary-table">
+          <tr><td>ATPS</td><td><em>Ambient Temperature, Pressure, Saturated</em>. Condiciones ambientales (temperatura y presión del lugar, saturado con agua).</td></tr>
+          <tr><td>BTPS</td><td><em>Body Temperature, Pressure, Saturated</em>. Condiciones corporales (37 °C, presión local, saturado). Para volúmenes ventilatorios.</td></tr>
+          <tr><td>STPD</td><td><em>Standard Temperature, Pressure, Dry</em>. Condiciones estándar (0 °C, 760 mmHg, seco). Para cantidades de O₂ y CO₂.</td></tr>
+          <tr><td>Rampa</td><td>Protocolo con incremento continuo de carga (W/min). Objetivo: duración de 8-12 min (regla de Buchfuhrer).</td></tr>
+          <tr><td>MVV directa</td><td>Medición directa de la ventilación voluntaria máxima en espirómetro (vs. estimación con FEV₁ × 35-40).</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Fármacos y procedimientos</div>
+        <table class="glossary-table">
+          <tr><td>IECA</td><td>Inhibidor de la enzima convertidora de angiotensina.</td></tr>
+          <tr><td>ARA-II</td><td>Antagonista del receptor de angiotensina II.</td></tr>
+          <tr><td>ARM</td><td>Antagonista del receptor mineralocorticoide (espironolactona, eplerenona).</td></tr>
+          <tr><td>ARNI</td><td><em>Angiotensin Receptor-Neprilysin Inhibitor</em> (sacubitril/valsartán).</td></tr>
+          <tr><td>iSGLT2</td><td>Inhibidor del cotransportador sodio-glucosa 2 (dapagliflozina, empagliflozina).</td></tr>
+          <tr><td>PDE5</td><td>Fosfodiesterasa tipo 5. Diana de sildenafilo, tadalafilo (vasodilatadores pulmonares).</td></tr>
+          <tr><td>ERA</td><td>Antagonista del receptor de endotelina (ambrisentan, macitentan, bosentan).</td></tr>
+          <tr><td>sGC</td><td>Estimulador de la guanilato ciclasa soluble (riociguat).</td></tr>
+          <tr><td>Prostanoides</td><td>Análogos de prostaciclina (epoprostenol IV, treprostinil IV/SC/inhalado, iloprost inhalado, selexipag oral).</td></tr>
+          <tr><td>PEA</td><td><em>Pulmonary Endarterectomy</em>. Endarterectomía pulmonar; tratamiento quirúrgico curativo de CTEPH operable.</td></tr>
+          <tr><td>BPA</td><td><em>Balloon Pulmonary Angioplasty</em>. Angioplastia pulmonar con balón; opción en CTEPH no operable.</td></tr>
+        </table>
+      </div>
+
+      <div class="glossary-section">
+        <div class="glossary-group">Sociedades y guías de referencia</div>
+        <table class="glossary-table">
+          <tr><td>ESC</td><td><em>European Society of Cardiology</em>.</td></tr>
+          <tr><td>ERS</td><td><em>European Respiratory Society</em>.</td></tr>
+          <tr><td>ATS</td><td><em>American Thoracic Society</em>.</td></tr>
+          <tr><td>ACCP</td><td><em>American College of Chest Physicians</em>.</td></tr>
+          <tr><td>AHA</td><td><em>American Heart Association</em>.</td></tr>
+          <tr><td>ACC</td><td><em>American College of Cardiology</em>.</td></tr>
+          <tr><td>OMS</td><td>Organización Mundial de la Salud. Define los grupos 1-5 de HP.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section id="quiz">
+      <h2><span class="num">Q</span>Cuestionario final</h2>
+      <p class="chapter-intro">35 preguntas de tres niveles de complejidad, con énfasis en hipertensión pulmonar. Tu progreso se guarda automáticamente en este dispositivo.</p>
+      <div class="quiz-wrap">
+        <div class="quiz-controls">
+          <div class="quiz-filter">
+            <button class="filter-btn active" data-level="all">Todas (35)</button>
+            <button class="filter-btn" data-level="basic">Básico</button>
+            <button class="filter-btn" data-level="intermediate">Intermedio</button>
+            <button class="filter-btn" data-level="advanced">Avanzado</button>
+          </div>
+          <div class="stats">Aciertos: <strong id="score-correct">0</strong> · Fallos: <strong id="score-wrong">0</strong> · Pendientes: <strong id="score-remain">35</strong></div>
+          <button class="quiz-reset" id="quizReset">Reiniciar progreso</button>
+        </div>
+        <div id="quiz-list"></div>
+      </div>
+    </section>
+
+    <!-- BIBLIOGRAFÍA -->
+    <section id="biblio">
+      <h2><span class="num">B</span>Bibliografía esencial</h2>
+      <p class="chapter-intro">Diez referencias que sostienen la práctica actual.</p>
+      <ol>
+        <li>Wasserman K, Hansen JE, Sue DY, et al. <em>Principles of Exercise Testing and Interpretation</em>. 5th ed. Lippincott; 2012.</li>
+        <li>Luks AM, Glenny RW, Robertson HT. <em>Introduction to Cardiopulmonary Exercise Testing</em>. Springer; 2013.</li>
+        <li>American Thoracic Society/American College of Chest Physicians. ATS/ACCP Statement on Cardiopulmonary Exercise Testing. Am J Respir Crit Care Med. 2003;167:211-277.</li>
+        <li>Guazzi M, Arena R, Halle M, et al. 2016 focused update: clinical recommendations for cardiopulmonary exercise testing data assessment in specific patient populations. Circulation. 2016;133:e694-e711.</li>
+        <li>Radtke T, Crook S, Kaltsakas G, et al. ERS statement on standardisation of cardiopulmonary exercise testing in chronic lung diseases. Eur Respir Rev. 2019;28:180101.</li>
+        <li>Balady GJ, Arena R, Sietsema K, et al. Clinician's guide to cardiopulmonary exercise testing in adults: AHA scientific statement. Circulation. 2010;122:191-225.</li>
+        <li>Beaver WL, Wasserman K, Whipp BJ. A new method for detecting anaerobic threshold by gas exchange. J Appl Physiol. 1986;60:2020-2027.</li>
+        <li>Arena R, Myers J, Guazzi M. Cardiopulmonary exercise testing and prognostic stratification in HF. Am Heart J. 2007;154:1080-1084.</li>
+        <li>Cole CR, Blackstone EH, Pashkow FJ, et al. Heart-rate recovery immediately after exercise as a predictor of mortality. N Engl J Med. 1999;341:1351-1357.</li>
+        <li>Buchfuhrer MJ, Hansen JE, Robinson TE, et al. Optimizing the exercise protocol for cardiopulmonary assessment. J Appl Physiol. 1983;55:1558-1564.</li>
+      </ol>
+    </section>
+
+  </main>
+</div>
+
+<div class="authors-block">
+  <div class="inner">
+    <h3>· Autoría ·</h3>
+    <div class="authors-grid">
+      <div class="author-card">
+        <h4>Dr. Juan Fernando Carvajal Estupiñán</h4>
+        <p class="role">Cardiólogo · Internista</p>
+        <p>Instituto del Corazón de Bucaramanga</p>
+        <p>Coordinador del Programa de Hipertensión Pulmonar, Instituto Neumológico del Oriente</p>
+        <p>Docente universitario (UDES, UNAB)</p>
+      </div>
+      <div class="author-card">
+        <h4>Dra. Diana Jimena Cano Rosales</h4>
+        <p class="role">Neumóloga</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="colophon">
+  Manual interactivo · v2.0 · Actualizado septiembre 2026 · Uso académico
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
